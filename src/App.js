@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect,useState} from 'react'
+import {Layout} from './components/Layout'
+import axios from 'axios'
+import {Spinner} from '@geist-ui/react'
 
 function App() {
+  const url = `https://webit-news-search.p.rapidapi.com/trending?language=en`
+  const [data,setData] = useState();
+  
+  useEffect(()=>{
+    axios.get(url,{
+      headers:{
+      "x-rapidapi-key": "f6bbd49316mshbceb0b3946e1234p16296ejsn5a8fdb44abd9",
+	    "x-rapidapi-host": "webit-news-search.p.rapidapi.com",
+	    "useQueryString": true
+    }}).then(res=>{
+      setData(res.data.data.results)
+    }).catch(err=>{
+      alert(err)
+    })  
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    data ?
+    <Layout data={data} />
+    :
+    <Spinner size="large" />
+
   );
 }
 
