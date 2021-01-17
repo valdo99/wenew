@@ -1,16 +1,13 @@
-import { Fieldset,Button } from '@geist-ui/react'
+import { Fieldset, Button } from '@geist-ui/react'
 
 export const CardNews = ({ title, subtitle, url }) => {
   return (
-    <Fieldset style={{marginTop:"10vh"}}>
+    <Fieldset style={{ borderRadius: "25px", marginTop:"1.5em", backgroundColor:"#9475B"}}>
       <Fieldset.Title>{title}</Fieldset.Title>
       <Fieldset.Subtitle>{subtitle}</Fieldset.Subtitle>
-      <Fieldset.Footer>
-        <Fieldset.Footer.Status>
-          click to read the article
-    </Fieldset.Footer.Status>
+      <Fieldset.Footer style={{justifyContent:"center"}}>
         <Fieldset.Footer.Actions>
-          <Button onClick={()=> window.location.href = url} auto size="mini">read full article</Button>
+          <Button style={{height:"3em", fontWeight:800}} auto type="secondary" onClick={() => window.location.href = url} auto size="mini">read full article</Button>
         </Fieldset.Footer.Actions>
       </Fieldset.Footer>
     </Fieldset>

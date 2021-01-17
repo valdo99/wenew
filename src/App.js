@@ -10,7 +10,7 @@ function App() {
   useEffect(()=>{
     axios.get(url,{
       headers:{
-      "x-rapidapi-key": "f6bbd49316mshbceb0b3946e1234p16296ejsn5a8fdb44abd9",
+      "x-rapidapi-key": process.env.REACT_APP_API_KEY,
 	    "x-rapidapi-host": "webit-news-search.p.rapidapi.com",
 	    "useQueryString": true
     }}).then(res=>{
@@ -23,7 +23,7 @@ function App() {
   return (
 
     data ?
-    <Layout data={data} />
+    <Layout  data={data} />
     :
     <Spinner size="large" />
 
